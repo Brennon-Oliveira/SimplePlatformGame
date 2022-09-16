@@ -1,18 +1,25 @@
 #include <raylib.h>
 #include <string>
+#include <iostream>
+
 
 class Player{
     protected:
-        // Player Values
-        Vector2 position;
-        int speed = 2;
-        int isMoving = 0;
-
         // Graphics
         float width = 32;
         float height = 32;
         Rectangle spriteRec = {0,0,width,height};
         int direction = 1;
+
+        // Player Values
+        Rectangle position = {
+            0,
+            0,
+            width * Consts::getScale(),
+            height * Consts::getScale()
+        };
+        int speed = 3;
+        int isMoving = 0;
 
         // Animation
         const int frameDuration = 4;
@@ -40,7 +47,15 @@ class Player{
 
         void draw(){
             spriteRec.width = width*direction;
-            DrawTextureRec(curTexture, spriteRec, position, WHITE);
+            DrawTexturePro(
+                curTexture, 
+                spriteRec,
+                position,
+                (Vector2){width/2,height/2},
+                0,
+                WHITE
+            );
+            // DrawTextureRec(curTexture, spriteRec, position, WHITE);
         }
     private:
 

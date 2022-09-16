@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.inc": "arm",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "string": "cpp"
     }
 }
