@@ -1,6 +1,6 @@
 #include <raylib.h>
-#include "classes/game/Consts.cpp"
-#include "classes/game/Game.cpp"
+#include "game/Consts.h"
+#include "game/Game.h"
 
 
 int main(){

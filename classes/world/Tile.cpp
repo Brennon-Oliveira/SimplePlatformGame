@@ -1,29 +1,22 @@
 #include <raylib.h>
+#include "world/Tile.h"
 
-class Tile{
-    protected:
-        int isReal;
-        int width;
-        int height;
-        Rectangle source;
-        Texture2D texture;
+Tile::Tile()
+    {}
 
-    public:
-        Tile(){};
-        Tile(int isReal){
-            this->isReal = isReal;
-        }
+Tile::Tile(int isReal){
+    this->isReal = isReal;
+}
 
-        Texture2D getTexture(){
-            return texture;
-        }
-        int getWidth(){
-            return height;
-        }
-        int getHeight(){
-            return width;
-        }
-        Rectangle getSource(){
-            return source;
-        }
-};
+Texture2D Tile::getTexture(){
+    return texture;
+}
+int Tile::getWidth(){
+    return height;
+}
+int Tile::getHeight(){
+    return width;
+}
+Rectangle Tile::getSource(){
+    return source;
+}

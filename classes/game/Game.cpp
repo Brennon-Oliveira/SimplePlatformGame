@@ -1,42 +1,37 @@
 #include <raylib.h>
 #include <raymath.h>
-#include "../entities/player/Player.cpp"
-#include "../world/World.cpp"
+#include "entities/Player.h"
+#include "world/World.h"
+#include "game/Consts.h"
+#include "game/Game.h"
 
-class Game {
-    public:
 
-        Player* player;
-        World curWorld;
+Game::Game(){
+    InitWindow(Consts::getWidth(), Consts::getHeight(), Consts::getTitle());            
+    SetTargetFPS(Consts::getFps());
+    curWorld.construct(1);
+    this->player = new Player(30, 30);
+    
+    this->clock();
+}
 
-        Game(){
-            InitWindow(Consts::getWidth(), Consts::getHeight(), Consts::getTitle());            
-            SetTargetFPS(Consts::getFps());
-            curWorld.construct(1);
-            this->player = new Player(30, 30);
-            
-            this->clock();
-        }
+void Game::clock(){
+    while (!WindowShouldClose())
+    {
+        this->update();
+        this->draw();
+    }
+}
 
-    private:
-        void clock(){
-            while (!WindowShouldClose())
-            {
-                this->update();
-                this->draw();
-            }
-        }
+void Game::update(){
+    this->player->update();
+}
 
-        void update(){
-            this->player->update();
-        }
-
-        void draw(){
-            BeginDrawing();
-                ClearBackground(WHITE);
-                
-                this->curWorld.draw();
-                this->player->draw();
-            EndDrawing();
-        }
-};
+void Game::draw(){
+    BeginDrawing();
+        ClearBackground(WHITE);
+        
+        this->curWorld.draw();
+        this->player->draw();
+    EndDrawing();
+}
