@@ -2,13 +2,14 @@
 #include <iostream>
 #include <string>
 #include "entities/Player.h"
+#include "game/Game.h"
 #include "game/Consts.h"
 
 
 Player::Player():
     width(32),
     height(32),
-    spriteRec({0,0,this->width,height}),
+    spriteRec({0,0,width,height}),
     direction(1),
     // Player Values
     position({
@@ -18,7 +19,11 @@ Player::Player():
         height * Consts::getScale()
     }),
     speed(300),
+    jumpHeight(300),
+    mass(200),
     isMoving(0),
+    isJumping(0),
+    canJump(1),
     // Animation
     frameDuration(4),
     frameTimer(0)
@@ -37,16 +42,38 @@ void Player::draw(){
         curTexture, 
         spriteRec,
         position,
-        (Vector2){width/2,height/2},
+        // (Vector2){width/2,height/2},
+        (Vector2){width/2,(height/2)-6},
         0,
         WHITE
     );
+    // DrawRectangle(position.x, position.y, position.width, position.height, BLUE);
     // DrawTextureRec(curTexture, spriteRec, position, WHITE);
 }
 
 //Private
 
 void Player::move(float delta){
+    if(
+        !isJumping
+    ){
+        if(!Game::curWorld->isColliding(
+            Vector2{
+                std::floor((position.x/32)+width/2),
+                std::floor((position.y/32)+Consts::getGravity() * mass * delta)
+            }
+        )){
+            position.y += Consts::getGravity() * mass * delta;
+        }
+        // } else if(!Game::curWorld->isColliding(
+        //     Vector2{
+        //         std::floor(position.x/32),
+        //         std::floor((position.y/32)+Consts::getGravity() * 1 * delta)
+        //     }
+        // )){
+        //     position.y += Consts::getGravity() * 1 * delta;
+        // }
+    }
     if(IsKeyDown(KEY_LEFT)){
         isMoving = 1;
         direction = -1;

@@ -13,8 +13,12 @@ class Player{
 
         // Player Values
         Rectangle position;
-        int speed;
+        float speed;
+        float jumpHeight;
+        float mass;
         int isMoving;
+        int canJump;
+        int isJumping;
 
         // Animation
         const int frameDuration;

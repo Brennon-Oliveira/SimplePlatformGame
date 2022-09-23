@@ -8,7 +8,7 @@ class Game {
     public:
 
         static Player* player;
-        World curWorld;
+        static World* curWorld;
 
         Game();
 

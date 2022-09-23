@@ -19,6 +19,12 @@ int Tile::getWidth(){
 int Tile::getHeight(){
     return width;
 }
+int Tile::getX(){
+    return x;
+}
+int Tile::getY(){
+    return y;
+}
 Rectangle Tile::getSource(){
     return source;
 }

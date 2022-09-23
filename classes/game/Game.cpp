@@ -8,13 +8,14 @@
 #include "game/Game.h"
 
 Player* Game::player = new Player();
+World* Game::curWorld = new World();
 
 Game::Game(){
     InitWindow(Consts::getWidth(), Consts::getHeight(), Consts::getTitle());            
     ToggleFullscreen();
     SetTargetFPS(Consts::getFps());
     TextureLoader::loadTextures();
-    curWorld.construct(1);
+    Game::curWorld->construct(1);
     
     this->clock();
 }
@@ -37,7 +38,7 @@ void Game::draw(){
     BeginDrawing();
         ClearBackground(WHITE);
         
-        this->curWorld.draw();
+        Game::curWorld->draw();
         Game::player->draw();
     EndDrawing();
 }

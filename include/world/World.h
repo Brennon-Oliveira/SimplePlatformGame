@@ -27,5 +27,7 @@ class World{
 
         Tile defineTileType(char type, int index);
 
+        int isColliding(Vector2 position);
+
         void draw();
 };

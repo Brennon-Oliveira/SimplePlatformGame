@@ -56,6 +56,7 @@ void World::defineTilemap(){
     }
 }
 
+
 Tile World::defineTileType(char type, int index){
     Tile tile;
     int x = index % mapWidth;
@@ -83,6 +84,15 @@ Tile World::defineTileType(char type, int index){
             break;
     }
     return tile;
+}
+
+int World::isColliding(Vector2 position){
+    int indexFromCoordinates = position.y * mapWidth + position.x;
+    Tile tile = tilemap[indexFromCoordinates];
+    std::cout << "IsReal: " << tile.isReal << "\n";
+    std::cout << "Position.x: " << position.x << " - Position.y: " << position.y << "\n";
+    std::cout << "Tile.x: " << tile.getX() << " - Tile.y: " << tile.getY() << "\n";
+    return tile.isReal;
 }
 
 void World::draw(){

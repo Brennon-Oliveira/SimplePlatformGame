@@ -7,6 +7,7 @@ class Consts {
         int WIDTH = GetScreenWidth();
         int HEIGHT = GetScreenHeight();
         int FPS = 200;
+        float GRAVITY = 300;
         float SCALE = 2;
     public:
         static char * getTitle(){
@@ -26,6 +27,10 @@ class Consts {
             return consts.FPS;
         }
         static int getScale(){
+            Consts consts;
+            return consts.SCALE;
+        }
+        static float getGravity(){
             Consts consts;
             return consts.SCALE;
         }
