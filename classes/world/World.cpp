@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <new>
+#include "game/Game.h"
 #include "game/Consts.h"
 #include "world/tilesTypes/Wall.h"
 #include "world/tilesTypes/Floor.h"
@@ -50,22 +51,31 @@ void World::loadMap(){
 void World::defineTilemap(){
     tilemap = new Tile[mapSize];
     for(int i = 0; i < mapSize; i++){
-        Tile tile = defineTileType(levelData[i]);
+        Tile tile = defineTileType(levelData[i], i);
         tilemap[i] = tile;
     }
 }
 
-Tile World::defineTileType(char type){
+Tile World::defineTileType(char type, int index){
     Tile tile;
+    int x = index % mapWidth;
+    int y = std::floor(index / mapWidth);
     switch (type)
     {
+        case 'p':{
+            Game::player->setPosition(
+                x*Game::player->getWidth(),
+                y*Game::player->getHeight()-Game::player->getHeight()
+            );
+            type = 'w';
+        }
         case 'w': {
-            Wall wallTile(0);
+            Wall wallTile(0, x, y);
             tile = wallTile;
             break;
         }
         case 'f':{
-            Floor floorTile(1);
+            Floor floorTile(1, x, y);
             tile = floorTile;
             break;
         }

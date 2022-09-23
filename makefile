@@ -2,7 +2,7 @@ INIT_FILE=setup.cpp
 
 PROJECT_NAME=SimplePlatformGame
 
-INCLUDES=classes/game/TextureLoader.cpp classes/entities/Player.cpp classes/world/World.cpp classes/world/Tile.cpp classes/world/tilesTypes/Floor.cpp classes/world/tilesTypes/Wall.cpp classes/game/Game.cpp
+INCLUDES=classes/game/TextureLoader.cpp classes/entities/Player.cpp classes/world/World.cpp classes/world/Tile.cpp classes/world/tilesTypes/Floor.cpp classes/game/Game.cpp classes/world/tilesTypes/Wall.cpp 
 
 COMPILER=g++
 

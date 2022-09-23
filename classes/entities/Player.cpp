@@ -1,11 +1,12 @@
 #include <raylib.h>
+#include <iostream>
 #include <string>
 #include <iostream>
 #include "entities/Player.h"
 #include "game/Consts.h"
 
 
-Player::Player(int x, int y):
+Player::Player():
     width(32),
     height(32),
     spriteRec({0,0,this->width,height}),
@@ -22,10 +23,7 @@ Player::Player(int x, int y):
     // Animation
     frameDuration(4),
     frameTimer(0)
-    {
-        position.x = x;
-        position.y = y;
-    }
+    { }
 
 void Player::update(){
     callAnimation = "idle";
@@ -62,6 +60,7 @@ void Player::move(){
         isMoving = 0;
     }
     position.x += speed * direction * isMoving;
+    std::cout << "\nx: " << position.x << " - y: " << position.y;
 }
 
 void Player::animationUpdate(){
@@ -87,4 +86,17 @@ void Player::animationControll(){
         lastAnimation = callAnimation;
         curTexture = LoadTexture("./assets/MainCharacters/VirtualGuy/Running.png");;
     }
+}
+
+void Player::setPosition(int x, int y){
+    position.x = x;
+    position.y = y;
+}
+
+int Player::getWidth(){
+    return width;
+}
+
+int Player::getHeight(){
+    return height;
 }

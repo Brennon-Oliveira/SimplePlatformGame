@@ -25,7 +25,7 @@ class World{
 
         void defineTilemap();
 
-        Tile defineTileType(char type);
+        Tile defineTileType(char type, int index);
 
         void draw();
 };

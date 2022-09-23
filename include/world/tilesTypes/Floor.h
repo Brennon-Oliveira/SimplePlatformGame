@@ -3,5 +3,5 @@
 
 class Floor: public Tile{
     public: 
-        Floor(int isReal);
+        Floor(int isReal, int x, int y);
 };

@@ -28,11 +28,17 @@ class Player{
         Texture2D curTexture;
 
     public:
-        Player(int x, int y);
+        Player();
 
         void update();
 
         void draw();
+
+        void setPosition(int x, int y);
+
+        int getWidth();
+
+        int getHeight();
     private:
 
         void move();

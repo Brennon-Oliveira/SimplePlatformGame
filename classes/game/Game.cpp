@@ -1,11 +1,13 @@
 #include <raylib.h>
 #include <raymath.h>
+#include <new>
 #include "game/TextureLoader.h"
 #include "entities/Player.h"
 #include "world/World.h"
 #include "game/Consts.h"
 #include "game/Game.h"
 
+Player* Game::player = new Player();
 
 Game::Game(){
     InitWindow(Consts::getWidth(), Consts::getHeight(), Consts::getTitle());            
@@ -13,7 +15,6 @@ Game::Game(){
     SetTargetFPS(Consts::getFps());
     TextureLoader::loadTextures();
     curWorld.construct(1);
-    this->player = new Player(30, 30);
     
     this->clock();
 }
@@ -27,7 +28,7 @@ void Game::clock(){
 }
 
 void Game::update(){
-    this->player->update();
+    Game::player->update();
 }
 
 void Game::draw(){
@@ -35,6 +36,6 @@ void Game::draw(){
         ClearBackground(WHITE);
         
         this->curWorld.draw();
-        this->player->draw();
+        Game::player->draw();
     EndDrawing();
 }

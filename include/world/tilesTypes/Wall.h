@@ -3,6 +3,6 @@
 
 class Wall:public Tile{
     public:
-        Wall(int isReal);
+        Wall(int isReal, int x, int y);
 
 };

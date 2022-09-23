@@ -4,8 +4,10 @@
 Tile::Tile()
     {}
 
-Tile::Tile(int isReal){
+Tile::Tile(int isReal, int x, int y){
     this->isReal = isReal;
+    this->x = x;
+    this->y = y;
 }
 
 Texture2D Tile::getTexture(){

@@ -2,7 +2,7 @@
 #include "game/TextureLoader.h"
 #include "world/tilesTypes/Floor.h"
 
-Floor::Floor(int isReal): Tile(isReal){
+Floor::Floor(int isReal, int x, int y): Tile(isReal, x, y){
     this->texture = TextureLoader::floorTexture;
     this->width = 16;
     this->height = 16;
