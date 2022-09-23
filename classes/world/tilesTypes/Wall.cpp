@@ -1,8 +1,9 @@
 #include <raylib.h>
+#include "game/TextureLoader.h"
 #include "world/tilesTypes/Wall.h"
 
 Wall::Wall(int isReal): Tile(isReal){
-    this->texture = LoadTexture("./assets/Background/Yellow.png");
+    this->texture = TextureLoader::wallTexture;
     this->width = 16;
     this->height = 16;
     this->source = Rectangle{

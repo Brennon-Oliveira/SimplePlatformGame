@@ -3,7 +3,7 @@
 
 class Consts {
     private:
-        char * TITLE = "Simple Platform Game";
+        char *TITLE = "Simple Platform Game";
         int WIDTH = GetScreenWidth();
         int HEIGHT = GetScreenHeight();
         int FPS = 60;

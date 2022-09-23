@@ -87,8 +87,8 @@ void World::draw(){
                 Rectangle{
                     (float)x*tile.getWidth()*Consts::getScale(),
                     (float)y*tile.getHeight()*Consts::getScale(),
-                    tile.getWidth()*Consts::getScale(),
-                    tile.getHeight()*Consts::getScale()
+                    (float)tile.getWidth()*Consts::getScale(),
+                    (float)tile.getHeight()*Consts::getScale()
                 },
                 (Vector2){
                     (float)tile.getWidth()/2,

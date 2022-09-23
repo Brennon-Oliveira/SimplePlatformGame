@@ -1,5 +1,6 @@
 #include <raylib.h>
 #include <raymath.h>
+#include "game/TextureLoader.h"
 #include "entities/Player.h"
 #include "world/World.h"
 #include "game/Consts.h"
@@ -8,7 +9,9 @@
 
 Game::Game(){
     InitWindow(Consts::getWidth(), Consts::getHeight(), Consts::getTitle());            
+    ToggleFullscreen();
     SetTargetFPS(Consts::getFps());
+    TextureLoader::loadTextures();
     curWorld.construct(1);
     this->player = new Player(30, 30);
     

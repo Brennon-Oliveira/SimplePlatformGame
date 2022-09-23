@@ -1,8 +1,9 @@
 #include <raylib.h>
+#include "game/TextureLoader.h"
 #include "world/tilesTypes/Floor.h"
 
 Floor::Floor(int isReal): Tile(isReal){
-    this->texture = LoadTexture("./assets/Terrain/Terrain.png");
+    this->texture = TextureLoader::floorTexture;
     this->width = 16;
     this->height = 16;
     this->source = Rectangle{
