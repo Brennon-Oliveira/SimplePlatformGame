@@ -6,7 +6,7 @@ class Consts {
         char *TITLE = "Simple Platform Game";
         int WIDTH = GetScreenWidth();
         int HEIGHT = GetScreenHeight();
-        int FPS = 60;
+        int FPS = 200;
         float SCALE = 2;
     public:
         static char * getTitle(){

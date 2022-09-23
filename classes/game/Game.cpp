@@ -28,7 +28,9 @@ void Game::clock(){
 }
 
 void Game::update(){
-    Game::player->update();
+    float deltaTime = GetFrameTime();
+    
+    Game::player->update(deltaTime);
 }
 
 void Game::draw(){

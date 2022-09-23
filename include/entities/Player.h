@@ -18,7 +18,7 @@ class Player{
 
         // Animation
         const int frameDuration;
-        int frameTimer;
+        float frameTimer;
         int frames;
         int curFrame;
         std::string lastAnimation;
@@ -30,7 +30,7 @@ class Player{
     public:
         Player();
 
-        void update();
+        void update(float delta);
 
         void draw();
 
@@ -41,9 +41,11 @@ class Player{
         int getHeight();
     private:
 
-        void move();
+        void move(float delta);
 
-        void animationUpdate();
+        // void gravity(int delta);
+
+        void animationUpdate(float delta);
 
         void animationControll();
 };

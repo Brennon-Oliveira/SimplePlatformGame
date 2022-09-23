@@ -1,7 +1,6 @@
 #include <raylib.h>
 #include <iostream>
 #include <string>
-#include <iostream>
 #include "entities/Player.h"
 #include "game/Consts.h"
 
@@ -18,18 +17,18 @@ Player::Player():
         width * Consts::getScale(),
         height * Consts::getScale()
     }),
-    speed(3),
+    speed(300),
     isMoving(0),
     // Animation
     frameDuration(4),
     frameTimer(0)
     { }
 
-void Player::update(){
+void Player::update(float delta){
     callAnimation = "idle";
-    move();
+    move(delta);
     animationControll();            
-    animationUpdate();
+    animationUpdate(delta);
 }
 
 void Player::draw(){
@@ -47,7 +46,7 @@ void Player::draw(){
 
 //Private
 
-void Player::move(){
+void Player::move(float delta){
     if(IsKeyDown(KEY_LEFT)){
         isMoving = 1;
         direction = -1;
@@ -59,12 +58,14 @@ void Player::move(){
     } else {
         isMoving = 0;
     }
-    position.x += speed * direction * isMoving;
-    std::cout << "\nx: " << position.x << " - y: " << position.y;
+    position.x += speed * direction * isMoving * delta;
+    // std::cout << delta << "\n";
+    // std::cout << "\nx: " << position.x << " - y: " << position.y;
 }
 
-void Player::animationUpdate(){
-    if(++frameTimer == frameDuration){
+void Player::animationUpdate(float delta){
+    std::cout << frameTimer << "\n";
+    if((frameTimer+=delta*75) >= frameDuration){
         frameTimer = 0;
         if(++curFrame > frames){
             curFrame = 0;
