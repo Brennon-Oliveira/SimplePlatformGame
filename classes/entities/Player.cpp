@@ -82,11 +82,13 @@ void Player::move(float delta){
     int mask = 0;
     if(direction > 0){
         mask = 0;   
+    } else {
+        mask = -1;
     }
     
     if(!Game::curWorld->isColliding(
         Vector2 {
-            std::floor((newPositionX+mask)/32+direction),
+            std::floor((newPositionX+mask)/(32*direction)),
             std::floor((position.y)/32)
         }
     )){
