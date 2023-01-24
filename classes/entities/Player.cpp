@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include <iostream>
 #include <string>
+
 #include "entities/Player.h"
 #include "game/Game.h"
 #include "game/Consts.h"
@@ -59,20 +60,12 @@ void Player::move(float delta){
     ){
         if(!Game::curWorld->isColliding(
             Vector2{
-                std::floor((position.x/32)+width/2),
+                std::floor((position.x/32)),
                 std::floor((position.y/32)+Consts::getGravity() * mass * delta)
             }
         )){
             position.y += Consts::getGravity() * mass * delta;
         }
-        // } else if(!Game::curWorld->isColliding(
-        //     Vector2{
-        //         std::floor(position.x/32),
-        //         std::floor((position.y/32)+Consts::getGravity() * 1 * delta)
-        //     }
-        // )){
-        //     position.y += Consts::getGravity() * 1 * delta;
-        // }
     }
     if(IsKeyDown(KEY_LEFT)){
         isMoving = 1;
@@ -84,14 +77,24 @@ void Player::move(float delta){
         callAnimation = "running";
     } else {
         isMoving = 0;
+    } 
+    float newPositionX = position.x +speed * direction * isMoving * delta;
+    int mask = 0;
+    if(direction > 0){
+        mask = 0;   
     }
-    position.x += speed * direction * isMoving * delta;
-    // std::cout << delta << "\n";
-    // std::cout << "\nx: " << position.x << " - y: " << position.y;
+    
+    if(!Game::curWorld->isColliding(
+        Vector2 {
+            std::floor((newPositionX+mask)/32+direction),
+            std::floor((position.y)/32)
+        }
+    )){
+        position.x= newPositionX;
+    }
 }
 
 void Player::animationUpdate(float delta){
-    std::cout << frameTimer << "\n";
     if((frameTimer+=delta*75) >= frameDuration){
         frameTimer = 0;
         if(++curFrame > frames){
